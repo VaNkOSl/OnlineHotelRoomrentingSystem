@@ -1,0 +1,159 @@
+﻿@using OnilineHotelRoomBookingSystem.Services.Data.Contacts
+@using OnlineHotelRoomBookingSystem.Web.Infrastructure.Extensions
+@inject IHotelService hotelService;
+@inject IAgentService agetService
+<link href="~/css/review.css" rel="stylesheet" />
+
+@model HotelDetailsViewModel
+
+@{
+    ViewBag.Title = "Hotel Details";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;" src="@Model.imageFile" alt="Hotel Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Name</u></p>
+            <p>Located in: <b>@Model.Address</b></p>
+            <p>Category: @Model.CategoryName</p>
+            <p>Number of Rooms: @Model.NumberOfRooms</p>
+            <p>Maximum Capacity: @Model.MaximumCapacity</p>
+            <p>@Model.Description</p>
+            <div class="form-inline">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    @if (await agetService.HasHotelWithIdAsync(User.GetId(), Model.Id) || User.IsAdmin())
+                    {
+                        <a class="btn btn-warning" asp-controller="Hotel" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-danger" asp-controller="Hotel" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    }
+                }
+            </div>
+            <p></p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Manager Info</h5>
+                    @if(Model.HotelManager.FullName != null)
+                    {
+                        <p class="card-text">Full Name: @Model.HotelManager.FullName</p>
+                    }
+                    <p class="card-text">Email: @Model.HotelManager.Email</p>
+                    <p class="card-text">Phone Number: @Model.HotelManager.PhoneNumber</p>
+                </div>
+            </div>
+
+            <button id="toggleRoomsButton" class="btn btn-primary mt-3" onclick="toggleRooms()">Show Rooms</button>
+
+            <div id="roomsSection" style="display: none; margin-top: 20px;">
+                <h5>Rooms</h5>
+
+                @if (Model.Rooms == null || !Model.Rooms.Any())
+                {
+                    <h2 class="text-center">The hotel has no rooms added yet! </h2>
+                }
+                else
+                {
+                    @foreach (var room in Model.Rooms)
+                    {
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">@room.RoomType</h5>
+                                <p class="card-text">Price: @room.PricePerNight</p>
+                                <p class="card-text">Capacity: @room.HotelName</p>
+                                <div class="col-4">
+                                    <img class="card-img-top" style="width: 20rem;" src="@room.imageFile" alt="Room Image">
+                                </div>
+                                <br />
+                                <a asp-area="" asp-controller="Room" asp-action="Details" asp-route-id="@room.Id"
+                                   asp-all-route-="" class="btn btn-success">Details</a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+    <h3 class="text-center">Reviews</h3>
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>@review.Content</p>
+                    <p>
+                        Rating:
+                        @{
+                            for (int i = 0; i < review.Rating; i++)
+                            {
+                                <span class="star">&#9733;</span>
+                            }
+                        }
+                    </p>
+                    <p>Date: @review.ReviewDate.ToShortDateString()</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h4 class="text-center">No reviews yet!</h4>
+    }
+</div>
+
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <h3 class="text-center">Write a Hotel Review</h3>
+        <form asp-action="AddReview" asp-controller="Hotel" method="post">
+            <input type="hidden" name="HotelId" value="@Model.Id" />
+            <div class="form-group">
+                <label for="reviewContent">Your Review:</label>
+                <textarea class="form-control" id="reviewContent" name="Content" rows="3"></textarea>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <div class="star-rating">
+                    <input type="radio" id="5-stars" name="Rating" value="5" />
+                    <label for="5-stars" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars" name="Rating" value="4" />
+                    <label for="4-stars" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars" name="Rating" value="3" />
+                    <label for="3-stars" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars" name="Rating" value="2" />
+                    <label for="2-stars" class="star">&#9733;</label>
+                    <input type="radio" id="1-star" name="Rating" value="1" />
+                    <label for="1-star" class="star">&#9733;</label>
+                </div>
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">You must be logged in to leave a review.</div>
+}
+
+
+<script src="/js/site.js"></script>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

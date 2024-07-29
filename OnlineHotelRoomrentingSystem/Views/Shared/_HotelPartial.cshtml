@@ -1,0 +1,31 @@
+﻿@using OnilineHotelRoomBookingSystem.Services.Data.Contacts
+@using OnlineHotelRoomBookingSystem.Web.Infrastructure.Extensions
+@model HotelServiceModel
+@inject IHotelService hotelService;
+@inject IAgentService agetService
+
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.imageFile" alt="Hotel Image">
+        <div class="card-body text-center">
+            <h4>Name: @Model.Name</h4>
+            <h5>City: @Model.City</h5>
+            <h5>Country: @Model.Country</h5>
+            <br />
+            <a asp-area="" asp-controller="Hotel" asp-action="Details" asp-route-id="@Model.Id"
+               asp-all-route-="" class="btn btn-success">Details</a>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                @if (await agetService.HasHotelWithIdAsync(User.GetId(), Model.Id) || User.IsAdmin()) 
+                {
+                    <a asp-area="" asp-controller="Hotel" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-area="" asp-controller="Hotel" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                    <p></p>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model BecomeAgentFormModel
+@{
+    ViewBag.Title = "Become Hotel Manager";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData.ModelState["Error"].Errors.First().ErrorMessage
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="FirstName" class="font-weight-bold">First Name:</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="font-weight-bold">Middle Name:</label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="font-weight-bold">Last Name:</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="font-weight-bold">Date of Birth:</label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EGN" class="font-weight-bold">EGN:</label>
+                <input asp-for="EGN" class="form-control" />
+                <span asp-validation-for="EGN" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="font-weight-bold">Phone Number:</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="+35985745869" />
+                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

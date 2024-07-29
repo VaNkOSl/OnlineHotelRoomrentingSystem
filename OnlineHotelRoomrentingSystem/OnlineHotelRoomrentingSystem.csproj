@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-OnlineHotelRoomrentingSystem-78461e61-19c4-4c93-af61-a26b481fdbf3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnilineHotelRoomBookingSystem.Services.Data\OnilineHotelRoomBookingSystem.Services.Data.csproj" />
+    <ProjectReference Include="..\OnlineHotelRoomBookingSystem.Web.Infrastructure\OnlineHotelRoomBookingSystem.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\OnlineHotelRoomBookingSystem.Web.ViewModels\OnlineHotelRoomBookingSystem.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\OnlineHotelRoomrentingSystem.Commons\OnlineHotelRoomrentingSystem.Commons.csproj" />
+    <ProjectReference Include="..\OnlineHotelRoomrentingSystem.Data\OnlineHotelRoomrentingSystem.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

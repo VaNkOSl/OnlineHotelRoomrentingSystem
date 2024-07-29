@@ -1,0 +1,129 @@
+﻿@using OnilineHotelRoomBookingSystem.Services.Data.Contacts;
+@using OnlineHotelRoomBookingSystem.Web.Infrastructure.Extensions
+@inject IHotelService hotelService;
+@inject IAgentService agetService
+@inject IRoomService roomservice
+<link href="~/css/review.css" rel="stylesheet" />
+
+@model RoomDetailsViewModel
+@{
+    ViewBag.Title = "Room Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;" src="@Model.imageFile" alt="Room Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.HotelName</u></p>
+            <p>Type : <b>@Model.RoomType</b></p>
+            <p>Price: @Model.PricePerNight BGN</p>
+            <p>@Model.Description</p>
+            <div class="form-inline">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    @if (Model.IsAvaible && await agetService.HasRoomsWithIdAsync(User.GetId(), Model.Id) == false || User.IsAdmin())
+                    {
+                        <form class="input-group-sm" asp-controller="Room"
+                              asp-action="Rent" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Rent" />
+                        </form>
+                    }
+                    else if (Model.IsAvaible == false && await roomservice.IsRentedByUserWithIdAsync(User.GetId(), Model.Id) == true || User.IsAdmin())
+                    {
+                        <form asp-controller="Room" asp-action="Leave"
+                              asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Leave" />
+                        </form>
+                    }
+
+                    @if (await agetService.HasRoomsWithIdAsync(User.GetId(), Model.Id) || User.IsAdmin())
+                    {
+                        <a class="btn btn-warning" asp-controller="Room" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-danger" asp-controller="Room" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    }
+                }
+             </div>
+             <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Manager Info</h5>
+                    <p class="card-text">Full Name: @Model.Agent.FullName</p>
+                    <p class="card-text">Email: @Model.Agent.Email</p>
+                    <p class="card-text">Phone Number: @Model.Agent.PhoneNumber</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h3 class="text-center">Reviews</h3>
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>@review.Content</p>
+                    <p>
+                        Rating:
+                        @{
+                            for (int i = 0; i < review.Rating; i++)
+                            {
+                                <span class="star">&#9733;</span>
+                            }
+                        }
+                    </p>
+                    <p>Date: @review.ReviewDate.ToShortDateString()</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h4 class="text-center">No reviews yet!</h4>
+    }
+</div>
+
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <h3 class="text-center">Write a Room Review</h3>
+        <form asp-action="AddReview" asp-controller="Room" method="post">
+            <input type="hidden" name="RoomId" value="@Model.Id" />
+            <div class="form-group">
+                <label for="reviewContent">Your Review:</label>
+                <textarea class="form-control" id="reviewContent" name="Content" rows="3"></textarea>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <div class="star-rating">
+                    <input type="radio" id="5-stars" name="Rating" value="5" />
+                    <label for="5-stars" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars" name="Rating" value="4" />
+                    <label for="4-stars" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars" name="Rating" value="3" />
+                    <label for="3-stars" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars" name="Rating" value="2" />
+                    <label for="2-stars" class="star">&#9733;</label>
+                    <input type="radio" id="1-star" name="Rating" value="1" />
+                    <label for="1-star" class="star">&#9733;</label>
+                </div>
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">You must be logged in to leave a review.</div>
+}

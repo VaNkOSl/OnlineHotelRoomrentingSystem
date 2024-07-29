@@ -1,0 +1,22 @@
+﻿ @model MyRoomsViewModel
+
+@{
+    ViewBag.Title = "My Rooms";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>My Added Rooms</h4>
+
+@if (!Model.AddedRooms.Any())
+{
+<h2 class="text-center">You have no rented rooms yet!</h2>
+}
+
+<div class="row">
+    @foreach (var rooms in Model.AddedRooms)
+    {
+    @await Html.PartialAsync("~/Views/Shared/_RoomPartial.cshtml", rooms)
+    }
+</div>

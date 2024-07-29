@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Chat";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link href="/css/chat.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Hello, ask an administrator a question and we will answer you as quickly as possible</h1>
+        <div class="chat-container">
+            <div id="chat-box" class="chat-box"></div>
+          @*   <input type="text" id="userInput" class="form-control chat-input" placeholder="Въведете вашето име..." /> *@
+            <input type="text" id="messageInput" class="form-control chat-input" placeholder="Enter a message..." />
+            <button id="sendButton" class="btn btn-primary btn-block">Submit</button>
+        </div>
+    </div>
+    <script src="/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model RoomPreDeleteViewModel
+@{
+    ViewBag.Title = "Delete Rooms";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Delete">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="card-img-top" src="@Model.imageFile" alt="Room Image">
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="PricePerNight" class="control-label"></label>
+                <input asp-for="PricePerNight" class="form-control" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <label>Hotel Name</label>
+                <input class="form-control" value="@Model.HotelName" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>

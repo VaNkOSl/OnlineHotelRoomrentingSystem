@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomrentingSystem", "OnlineHotelRoomrentingSystem\OnlineHotelRoomrentingSystem.csproj", "{E42F90C9-E280-4369-B7DA-2889B0B51CEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{DCC45EF2-E0E0-439E-A184-D3CD15215ED2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{CDB60EFF-B338-471B-9951-39B5A375035A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1B9BFF50-B8D7-4768-B2F8-203D9AC9EFD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomrentingSystem.Data", "OnlineHotelRoomrentingSystem.Data\OnlineHotelRoomrentingSystem.Data.csproj", "{0059286A-F392-43B7-98F1-E647F4ED7E40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomrentingSystem.Models", "OnlineHotelRoomrentingSystem.Models\OnlineHotelRoomrentingSystem.Models.csproj", "{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomBookingSystem.Web.ViewModels", "OnlineHotelRoomBookingSystem.Web.ViewModels\OnlineHotelRoomBookingSystem.Web.ViewModels.csproj", "{BB388A68-9786-4096-975C-DE041F0B5D74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnilineHotelRoomBookingSystem.Services.Data", "OnilineHotelRoomBookingSystem.Services.Data\OnilineHotelRoomBookingSystem.Services.Data.csproj", "{F0DD143E-CCA3-49C7-9C38-548050BFC5F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomBookingSystem.Web.Infrastructure", "OnlineHotelRoomBookingSystem.Web.Infrastructure\OnlineHotelRoomBookingSystem.Web.Infrastructure.csproj", "{DE00BC85-6EF4-4819-9993-5D11BF552398}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{11856C6B-148E-4AEB-AC6E-890907319E50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineHotelRoomrentingSystem.Tests", "OnlineHotelRoomrentingSystem.Tests\OnlineHotelRoomrentingSystem.Tests.csproj", "{1868DEFA-8065-4452-87A7-38ED064D6386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineHotelRoomrentingSystem.Commons", "OnlineHotelRoomrentingSystem.Commons\OnlineHotelRoomrentingSystem.Commons.csproj", "{59A64A23-EAE4-4AA0-8AF4-0192C70FECA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E42F90C9-E280-4369-B7DA-2889B0B51CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42F90C9-E280-4369-B7DA-2889B0B51CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42F90C9-E280-4369-B7DA-2889B0B51CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42F90C9-E280-4369-B7DA-2889B0B51CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0059286A-F392-43B7-98F1-E647F4ED7E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0059286A-F392-43B7-98F1-E647F4ED7E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0059286A-F392-43B7-98F1-E647F4ED7E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0059286A-F392-43B7-98F1-E647F4ED7E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB388A68-9786-4096-975C-DE041F0B5D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB388A68-9786-4096-975C-DE041F0B5D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB388A68-9786-4096-975C-DE041F0B5D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB388A68-9786-4096-975C-DE041F0B5D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0DD143E-CCA3-49C7-9C38-548050BFC5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0DD143E-CCA3-49C7-9C38-548050BFC5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0DD143E-CCA3-49C7-9C38-548050BFC5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0DD143E-CCA3-49C7-9C38-548050BFC5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE00BC85-6EF4-4819-9993-5D11BF552398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE00BC85-6EF4-4819-9993-5D11BF552398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE00BC85-6EF4-4819-9993-5D11BF552398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE00BC85-6EF4-4819-9993-5D11BF552398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1868DEFA-8065-4452-87A7-38ED064D6386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1868DEFA-8065-4452-87A7-38ED064D6386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1868DEFA-8065-4452-87A7-38ED064D6386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1868DEFA-8065-4452-87A7-38ED064D6386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A64A23-EAE4-4AA0-8AF4-0192C70FECA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A64A23-EAE4-4AA0-8AF4-0192C70FECA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A64A23-EAE4-4AA0-8AF4-0192C70FECA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A64A23-EAE4-4AA0-8AF4-0192C70FECA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E42F90C9-E280-4369-B7DA-2889B0B51CEA} = {1B9BFF50-B8D7-4768-B2F8-203D9AC9EFD3}
+		{0059286A-F392-43B7-98F1-E647F4ED7E40} = {DCC45EF2-E0E0-439E-A184-D3CD15215ED2}
+		{4F60083E-DDF9-4393-B5B9-7840FC2FEAA1} = {DCC45EF2-E0E0-439E-A184-D3CD15215ED2}
+		{BB388A68-9786-4096-975C-DE041F0B5D74} = {1B9BFF50-B8D7-4768-B2F8-203D9AC9EFD3}
+		{F0DD143E-CCA3-49C7-9C38-548050BFC5F7} = {CDB60EFF-B338-471B-9951-39B5A375035A}
+		{DE00BC85-6EF4-4819-9993-5D11BF552398} = {1B9BFF50-B8D7-4768-B2F8-203D9AC9EFD3}
+		{1868DEFA-8065-4452-87A7-38ED064D6386} = {11856C6B-148E-4AEB-AC6E-890907319E50}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB62E410-E172-4D1F-93AF-AC9802F9C049}
+	EndGlobalSection
+EndGlobal

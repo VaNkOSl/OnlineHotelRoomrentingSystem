@@ -1,0 +1,51 @@
+﻿@using OnilineHotelRoomBookingSystem.Services.Data.Contacts
+@using OnlineHotelRoomBookingSystem.Web.Infrastructure.Extensions
+
+@inject IHotelService hotelService;
+@inject IAgentService agetService
+@inject IRoomService roomservice
+
+@model RoomServiceModel
+
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.imageFile" alt="Hotel Image">
+        <div class="card-body text-center">
+            <h4>Hotel Name: @Model.HotelName</h4>
+            <h4>Type: @Model.RoomType</h4>
+            <b>@String.Format("{0:f2}", Model.PricePerNight) BGN</b>
+            <h5>Available: @(Model.IsAvaible ? "Yes" : "No")</h5>
+            <br />
+            <a asp-area="" asp-controller="Room" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+            @if (User != null && this.User.Identity.IsAuthenticated)
+            {
+                @if (await agetService.HasRoomsWithIdAsync(User.GetId(), Model.Id) || User.IsAdmin())
+                {
+                    <a asp-area="" asp-controller="Room" asp-area="" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="Room" asp-action="Delete" asp-area="" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                    <p></p>
+                }     
+            }
+            @if (Model.IsAvaible == true @* && await agetService.HasRoomsWithIdAsync(User.GetId(), Model.Id) == false  *@|| User.IsAdmin())
+            {
+                <form class="input-group-sm" asp-controller="Room" asp-area=""
+                      asp-action="Rent" asp-route-id="@Model.Id" method="post">
+                    <input class="btn btn-primary" type="submit" value="Rent" />
+                </form>
+
+            }
+            
+            else if (Model.IsAvaible == false && await roomservice.IsRentedByUserWithIdAsync(User.GetId(), Model.Id) == true)
+            {
+                <form asp-controller="Room" asp-action="Leave" asp-area=""
+                      asp-route-id="@Model.Id" method="post">
+                    <input class="btn btn-primary" type="submit" value="Leave" />
+                </form>
+            }
+        </div>
+    </div>
+</div>

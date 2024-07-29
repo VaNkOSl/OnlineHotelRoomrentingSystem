@@ -1,0 +1,20 @@
+﻿@model IEnumerable<RoomServiceModel>
+@{
+    ViewBag.Title = "All Rooms";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">No rooms yet!</h2>
+}
+
+<div class="row">
+    @foreach (var room in Model)
+    {
+        <partial name="_RoomPartial" model="@room" />
+    }
+</div>
+

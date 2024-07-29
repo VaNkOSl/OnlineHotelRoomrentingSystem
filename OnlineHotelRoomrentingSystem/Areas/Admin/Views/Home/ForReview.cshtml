@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HotelServiceModel>
+
+@{
+    ViewBag.Title = "Hotels For Review";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <p>No unapproved hotels available.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><label>Image</label></th>
+                <th><label>Name</label></th>
+                <th><label>Address</label></th>
+                <th><label>City</label></th>
+                <th><label>Actions</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hotel in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@hotel.imageFile" alt="@hotel.Name" style="width:100px;height:100px;" />
+                    </td>
+                    <td><label>@hotel.Name</label></td>
+                    <td><label>@hotel.Address</label></td>
+                    <td><label>@hotel.City</label></td>
+                    <td>
+                        <form asp-action="Approve" method="post">
+                            <input type="hidden" name="hotelId" value="@hotel.Id" />
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

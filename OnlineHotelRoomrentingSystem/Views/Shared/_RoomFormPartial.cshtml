@@ -1,0 +1,48 @@
+﻿@model RoomFormModel
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="RoomTypeId"></label>
+        <select asp-for="RoomTypeId" class="form-control">
+            @foreach (var roomType in Model.RoomTypes)
+            {
+                <option value="@roomType.Id">@roomType.Name</option>
+            }
+        </select>
+        <span asp-validation-for="RoomTypeId" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PricePerNight"></label>
+        <input asp-for="PricePerNight" class="form-control" placeholder="Price..." />
+        <span asp-validation-for="PricePerNight" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" placeholder="Description..." />
+        <span asp-validation-for="Description" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoomNumber"></label>
+        <input asp-for="RoomNumber" class="form-control" placeholder="Room number..." />
+        <span asp-validation-for="RoomNumber" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="imageFile">Upload Image</label>
+        <input type="file" name="imageFile" class="form-control" />
+        <span asp-validation-for="imageFile" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HotelId"></label>
+        <select asp-for="HotelId" class="form-control">
+            @foreach (var hotel in Model.Hotels)
+            {
+                <option value="@hotel.Id">@hotel.Name</option>
+            }
+        </select>
+        <span asp-validation-for="HotelId" class="small text-danger"></span>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary mt-3" type="submit" value="Save" />
+    </div>
+</form>
